@@ -1,0 +1,133 @@
+<canvas width="600" height="400"></canvas>
+<button>borrar</button>
+
+<script>
+	var boton= document.querySelector("button");
+	var pantalla=document.querySelector("canvas");
+	var pincel= pantalla.getContext("2d");
+	var puedoDibujar;
+	var color="black";
+	pincel.fillStyle="white";
+	pincel.fillRect(0,0,600,400);
+	pincel.fillStyle="black";
+	pincel.strokeRect(0,0,600,400);
+	function dibujarColores(){
+
+		pincel.fillStyle="green";
+		pincel.fillRect(0,0,20,20);
+		pincel.fillStyle="blue";
+		pincel.fillRect(20,0,20,20);
+		pincel.fillStyle="purple";
+		pincel.fillRect(40,0,20,20);
+		pincel.fillStyle="pink";
+		pincel.fillRect(60,0,20,20);
+		pincel.fillStyle="red";
+		pincel.fillRect(80,0,20,20);
+		
+		pincel.fillStyle="orange";
+		pincel.fillRect(100,0,20,20);
+		pincel.fillStyle="yellow";
+		pincel.fillRect(120,0,20,20);
+	
+		pincel.fillStyle="black";
+		pincel.fillRect(140,0,20,20);
+		pincel.fillStyle="white";
+		pincel.fillRect(160,0,20,20);
+	
+	}
+
+
+	
+	function dibujarCirculo(evento){
+		dibujarColores();
+		if(puedoDibujar){
+			var x= evento.pageX - pantalla.offsetLeft;
+			var y = evento.pageY -pantalla.offsetTop;
+			pincel.fillStyle=color;
+			pincel.beginPath();
+			pincel.arc(x,y,4,0,2*Math.PI);
+			pincel.fill();
+		}
+	}
+	function habilitar(){
+		puedoDibujar=true;
+	}
+	function deshobilitar(){
+		puedoDibujar=false;
+	}
+	function cambiarColor(evento){
+		var x= evento.pageX - pantalla.offsetLeft;
+		var y = evento.pageY -pantalla.offsetTop;
+		if((x>0) && (x<20) && (y <=20)){
+			color="green";
+		}
+		if((x>20) && (x<40) && (y <=20)){
+			color="blue";
+		}
+		if((x>40) && (x<60) && (y <=20)){
+			color="purple";
+		}
+		if((x>60) && (x<80) && (y <=20)){
+			color="pink";
+		}
+		if((x>80) && (x<100) && (y <=20)){
+			color="red";
+		}
+		if((x>100) && (x<120) && (y <=20)){
+			color="orange";
+		}
+		if((x>120) && (x<140) && (y <=20)){
+			color="yellow";
+		}
+		if((x>140) && (x<160) && (y <=20)){
+			color="black";
+		}
+		if((x>160) && (x<180) && (y <=20)){
+			color="white";
+		}
+	
+
+
+	
+
+	}
+	function limpiar(){
+
+
+		var color="black";
+		pincel.fillStyle="white";
+		pincel.fillRect(0,0,600,400);
+		pincel.fillStyle="black";
+		pincel.strokeRect(0,0,600,400);
+	
+
+			pincel.fillStyle="green";
+			pincel.fillRect(0,0,20,20);
+			pincel.fillStyle="blue";
+			pincel.fillRect(20,0,20,20);
+			pincel.fillStyle="purple";
+			pincel.fillRect(40,0,20,20);
+			pincel.fillStyle="pink";
+			pincel.fillRect(60,0,20,20);
+			pincel.fillStyle="red";
+			pincel.fillRect(80,0,20,20);
+			
+			pincel.fillStyle="orange";
+			pincel.fillRect(100,0,20,20);
+			pincel.fillStyle="yellow";
+			pincel.fillRect(120,0,20,20);
+		
+			pincel.fillStyle="black";
+			pincel.fillRect(140,0,20,20);
+			pincel.fillStyle="white";
+			pincel.fillRect(160,0,20,20);
+	}
+	dibujarColores();
+
+	pantalla.onmousemove=dibujarCirculo;
+	pantalla.onmousedown=habilitar;
+	pantalla.onmouseup=deshobilitar;
+	pantalla.onclick=cambiarColor;
+	boton.onclick=limpiar;
+
+</script>
